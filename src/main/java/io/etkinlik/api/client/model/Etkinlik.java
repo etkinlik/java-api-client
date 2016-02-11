@@ -1,6 +1,6 @@
 package io.etkinlik.api.client.model;
 
-import io.etkinlik.api.client.model.response.EtkinlikOzellik;
+import io.etkinlik.api.client.model.etkinlik.Ozellik;
 
 public class Etkinlik {
 
@@ -13,7 +13,7 @@ public class Etkinlik {
     private String bitis;
     private boolean ucretliMi;
 
-    private EtkinlikOzellik ozellik;
+    private Ozellik ozellik;
 
     private Tur tur;
 
@@ -55,7 +55,7 @@ public class Etkinlik {
         return ucretliMi;
     }
 
-    public EtkinlikOzellik getOzellik() {
+    public Ozellik getOzellik() {
         return ozellik;
     }
 

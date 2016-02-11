@@ -1,6 +1,6 @@
-package io.etkinlik.api.client.model.response;
+package io.etkinlik.api.client.model.response.exception;
 
-public class YetkilendirmeHatasiSonuc {
+public class GenelHataResponse {
     private int sonuc;
     private String mesaj;
 

@@ -1,21 +1,16 @@
 package io.etkinlik.api.client.exception;
 
-import io.etkinlik.api.client.model.response.YetkilendirmeHatasiSonuc;
+import io.etkinlik.api.client.model.response.exception.YetkilendirmeResponse;
 
 public class YetkilendirmeException extends RuntimeException {
 
-    private YetkilendirmeHatasiSonuc sonuc;
+    private YetkilendirmeResponse response;
 
-    public YetkilendirmeException(YetkilendirmeHatasiSonuc sonuc) {
-
-        // elde json var
-
+    public YetkilendirmeException(YetkilendirmeResponse sonuc) {
         super();
-
-        this.sonuc = sonuc;
+        this.response = sonuc;
     }
-
-    public YetkilendirmeHatasiSonuc getSonuc() {
-        return sonuc;
+    public YetkilendirmeResponse getResponse() {
+        return response;
     }
 }

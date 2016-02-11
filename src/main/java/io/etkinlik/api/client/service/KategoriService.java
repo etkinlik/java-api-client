@@ -6,22 +6,22 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import io.etkinlik.api.client.ApiClient;
 import io.etkinlik.api.client.exception.BilinmeyenDurumException;
 import io.etkinlik.api.client.exception.YetkilendirmeException;
-import io.etkinlik.api.client.model.Tur;
+import io.etkinlik.api.client.model.Kategori;
 import io.etkinlik.api.client.model.response.exception.YetkilendirmeResponse;
 
 import java.util.Vector;
 
-public class TurService {
+public class KategoriService {
 
     private final ApiClient client;
 
-    public TurService(ApiClient apiClient) {
+    public KategoriService(ApiClient apiClient) {
         this.client = apiClient;
     }
 
-    public Vector<Tur> getListe() throws UnirestException {
+    public Vector<Kategori> getListe() throws UnirestException {
 
-        HttpResponse response = client.getApiService().get("/turler");
+        HttpResponse response = client.getApiService().get("/kategoriler");
 
         switch (response.getStatus()) {
 
@@ -29,7 +29,7 @@ public class TurService {
 
                 return client.getGson().fromJson(
                         response.getBody().toString(),
-                        new TypeToken<Vector<Tur>>(){}.getType()
+                        new TypeToken<Vector<Kategori>>(){}.getType()
                 );
 
             case 401: throw new YetkilendirmeException(client.getGson().fromJson(response.getBody().toString(), YetkilendirmeResponse.class));

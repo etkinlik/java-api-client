@@ -1,6 +1,6 @@
-package io.etkinlik.api.client.model.response;
+package io.etkinlik.api.client.model.etkinlik;
 
-public class EtkinlikOzellik {
+public class Ozellik {
     private String telefon;
     private String mail;
     private String facebook;

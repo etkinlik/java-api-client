@@ -1,4 +1,4 @@
-package io.etkinlik.api.client.model.response;
+package io.etkinlik.api.client.model.genel;
 
 public class Sayfalama {
     private int toplamKayit;
