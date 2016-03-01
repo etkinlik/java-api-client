@@ -2,9 +2,9 @@ package io.etkinlik.api.client.exception;
 
 import com.mashape.unirest.http.HttpResponse;
 
-public class BilinmeyenDurumException extends RuntimeException {
+public class UnknownException extends RuntimeException {
     private HttpResponse response;
-    public BilinmeyenDurumException(HttpResponse response) {
+    public UnknownException(HttpResponse response) {
         super();
         this.response = response;
     }

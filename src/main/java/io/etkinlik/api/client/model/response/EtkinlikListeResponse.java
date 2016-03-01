@@ -4,6 +4,7 @@ import io.etkinlik.api.client.model.Etkinlik;
 import io.etkinlik.api.client.model.genel.Sayfalama;
 
 public class EtkinlikListeResponse {
+
     private Sayfalama sayfalama;
     private Etkinlik[] kayitlar;
 
@@ -14,4 +15,5 @@ public class EtkinlikListeResponse {
     public Sayfalama getSayfalama() {
         return sayfalama;
     }
+
 }

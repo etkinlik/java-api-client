@@ -1,9 +1,8 @@
 package io.etkinlik.api.client.model.response.exception;
 
-public class MukerrerResponse {
+public class BadRequestResponse {
     private int sonuc;
     private String mesaj;
-    private int yeniId;
 
     public int getSonuc() {
         return sonuc;
@@ -11,9 +10,5 @@ public class MukerrerResponse {
 
     public String getMesaj() {
         return mesaj;
-    }
-
-    public int getYeniId() {
-        return yeniId;
     }
 }

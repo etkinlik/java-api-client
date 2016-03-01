@@ -4,10 +4,10 @@ import com.google.common.reflect.TypeToken;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import io.etkinlik.api.client.ApiClient;
-import io.etkinlik.api.client.exception.BilinmeyenDurumException;
-import io.etkinlik.api.client.exception.YetkilendirmeException;
+import io.etkinlik.api.client.exception.UnauthorizedException;
+import io.etkinlik.api.client.exception.UnknownException;
 import io.etkinlik.api.client.model.Sehir;
-import io.etkinlik.api.client.model.response.exception.YetkilendirmeResponse;
+import io.etkinlik.api.client.model.response.exception.UnauthorizedResponse;
 
 import java.util.Vector;
 
@@ -32,9 +32,9 @@ public class SehirService {
                         new TypeToken<Vector<Sehir>>(){}.getType()
                 );
 
-            case 401: throw new YetkilendirmeException(client.getGson().fromJson(response.getBody().toString(), YetkilendirmeResponse.class));
+            case 401: throw new UnauthorizedException(client.getGson().fromJson(response.getBody().toString(), UnauthorizedResponse.class));
         }
 
-        throw new BilinmeyenDurumException(response);
+        throw new UnknownException(response);
     }
 }

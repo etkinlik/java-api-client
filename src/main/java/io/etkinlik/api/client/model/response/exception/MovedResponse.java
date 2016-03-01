@@ -1,8 +1,10 @@
 package io.etkinlik.api.client.model.response.exception;
 
-public class GenelHataResponse {
+public class MovedResponse {
+
     private int sonuc;
     private String mesaj;
+    private int yeniId;
 
     public int getSonuc() {
         return sonuc;
@@ -10,5 +12,9 @@ public class GenelHataResponse {
 
     public String getMesaj() {
         return mesaj;
+    }
+
+    public int getYeniId() {
+        return yeniId;
     }
 }

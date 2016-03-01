@@ -8,10 +8,7 @@ import io.etkinlik.api.client.exception.*;
 import io.etkinlik.api.client.model.Etkinlik;
 import io.etkinlik.api.client.model.request.EtkinlikListeConfig;
 import io.etkinlik.api.client.model.response.EtkinlikListeResponse;
-import io.etkinlik.api.client.model.response.exception.BulunamadiResponse;
-import io.etkinlik.api.client.model.response.exception.GenelHataResponse;
-import io.etkinlik.api.client.model.response.exception.MukerrerResponse;
-import io.etkinlik.api.client.model.response.exception.YetkilendirmeResponse;
+import io.etkinlik.api.client.model.response.exception.*;
 
 public class EtkinlikService {
     private final ApiClient client;
@@ -22,8 +19,8 @@ public class EtkinlikService {
 
     public EtkinlikListeResponse getListe(EtkinlikListeConfig config) throws
             UnirestException,
-            YetkilendirmeException,
-            BilinmeyenDurumException {
+            UnauthorizedException,
+            UnknownException {
 
         HttpResponse response = client.getApiService().get("/etkinlikler", config.parameters());
 
@@ -36,18 +33,18 @@ public class EtkinlikService {
                         new TypeToken<EtkinlikListeResponse>(){}.getType()
                 );
 
-            case 401: throw new YetkilendirmeException(client.getGson().fromJson(response.getBody().toString(), YetkilendirmeResponse.class));
+            case 401: throw new UnauthorizedException(client.getGson().fromJson(response.getBody().toString(), UnauthorizedResponse.class));
         }
 
-        throw new BilinmeyenDurumException(response);
+        throw new UnknownException(response);
     }
 
     public Etkinlik getById(int etkinlikId) throws
             UnirestException,
-            MukerrerException,
-            BilinmeyenDurumException,
-            GenelHataException,
-            BulunamadiException {
+            MovedException,
+            UnknownException,
+            BadRequestException,
+            NotFoundException {
 
         HttpResponse response = client.getApiService().get("/etkinlik/" + etkinlikId);
 
@@ -57,12 +54,13 @@ public class EtkinlikService {
                         response.getBody().toString(),
                         new TypeToken<Etkinlik>(){}.getType()
                 );
-            case 301: throw new MukerrerException(client.getGson().fromJson(response.getBody().toString(), MukerrerResponse.class));
-            case 400: throw new GenelHataException(client.getGson().fromJson(response.getBody().toString(), GenelHataResponse.class));
-            case 401: throw new YetkilendirmeException(client.getGson().fromJson(response.getBody().toString(), YetkilendirmeResponse.class));
-            case 404: throw new BulunamadiException(client.getGson().fromJson(response.getBody().toString(), BulunamadiResponse.class));
+            case 301: throw new MovedException(client.getGson().fromJson(response.getBody().toString(), MovedResponse.class));
+            case 400: throw new BadRequestException(client.getGson().fromJson(response.getBody().toString(), BadRequestResponse.class));
+            case 401: throw new UnauthorizedException(client.getGson().fromJson(response.getBody().toString(), UnauthorizedResponse.class));
+            case 404: throw new NotFoundException(client.getGson().fromJson(response.getBody().toString(), NotFoundResponse.class));
+            case 410: throw new GoneException(client.getGson().fromJson(response.getBody().toString(), GoneResponse.class));
         }
 
-        throw new BilinmeyenDurumException(response);
+        throw new UnknownException(response);
     }
 }

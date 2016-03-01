@@ -1,6 +1,6 @@
 package io.etkinlik.api.client.model.response.exception;
 
-public class YetkilendirmeResponse {
+public class UnauthorizedResponse {
     private int sonuc;
     private String mesaj;
 

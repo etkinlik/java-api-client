@@ -12,6 +12,7 @@ public class Etkinlik {
     private String baslangic;
     private String bitis;
     private boolean ucretliMi;
+    private int durum;
 
     private Ozellik ozellik;
 
@@ -53,6 +54,10 @@ public class Etkinlik {
 
     public boolean isUcretliMi() {
         return ucretliMi;
+    }
+
+    public int getDurum() {
+        return durum;
     }
 
     public Ozellik getOzellik() {

@@ -1,12 +1,17 @@
 package io.etkinlik.api.client.model.request;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.HashMap;
+import java.util.Vector;
 
 public class EtkinlikListeConfig {
-    private int turId;
-    private int kategoriId;
-    private int mekanId;
-    private int sehirId;
+
+    private Vector<Integer> turIds;
+    private Vector<Integer> kategoriIds;
+    private Vector<Integer> mekanIds;
+    private Vector<Integer> sehirIds;
+
     private int sayfa = 1;
     private int adet = 50;
 
@@ -14,33 +19,41 @@ public class EtkinlikListeConfig {
 
         HashMap<String, Object> map = new HashMap<String, Object>();
 
-        map.put("turId", turId);
-        map.put("kategoriId", kategoriId);
-        map.put("mekanId", mekanId);
-        map.put("sehirId", sehirId);
+        if ( ! turIds.isEmpty())
+            map.put("turIds", StringUtils.join(turIds, ","));
+
+        if ( ! kategoriIds.isEmpty())
+            map.put("kategoriIds", StringUtils.join(kategoriIds, ","));
+
+        if ( ! mekanIds.isEmpty())
+            map.put("mekanIds", StringUtils.join(mekanIds, ","));
+
+        if ( ! sehirIds.isEmpty())
+            map.put("sehirIds", StringUtils.join(sehirIds, ","));
+
         map.put("sayfa", sayfa);
         map.put("adet", adet);
 
         return map;
     }
 
-    public EtkinlikListeConfig setTurId(int turId) {
-        this.turId = turId;
+    public EtkinlikListeConfig addTurId(int turId) {
+        this.turIds.add(turId);
         return this;
     }
 
-    public EtkinlikListeConfig setKategoriId(int kategoriId) {
-        this.kategoriId = kategoriId;
+    public EtkinlikListeConfig addKategoriId(int kategoriId) {
+        this.kategoriIds.add(kategoriId);
         return this;
     }
 
-    public EtkinlikListeConfig setMekanId(int mekanId) {
-        this.mekanId = mekanId;
+    public EtkinlikListeConfig addMekanId(int mekanId) {
+        this.mekanIds.add(mekanId);
         return this;
     }
 
-    public EtkinlikListeConfig setSehirId(int sehirId) {
-        this.sehirId = sehirId;
+    public EtkinlikListeConfig addSehirId(int sehirId) {
+        this.sehirIds.add(sehirId);
         return this;
     }
 

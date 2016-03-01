@@ -4,12 +4,12 @@ import com.google.common.reflect.TypeToken;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import io.etkinlik.api.client.ApiClient;
-import io.etkinlik.api.client.exception.BilinmeyenDurumException;
-import io.etkinlik.api.client.exception.GenelHataException;
-import io.etkinlik.api.client.exception.YetkilendirmeException;
+import io.etkinlik.api.client.exception.BadRequestException;
+import io.etkinlik.api.client.exception.UnauthorizedException;
+import io.etkinlik.api.client.exception.UnknownException;
 import io.etkinlik.api.client.model.Ilce;
-import io.etkinlik.api.client.model.response.exception.GenelHataResponse;
-import io.etkinlik.api.client.model.response.exception.YetkilendirmeResponse;
+import io.etkinlik.api.client.model.response.exception.BadRequestResponse;
+import io.etkinlik.api.client.model.response.exception.UnauthorizedResponse;
 
 import java.util.Vector;
 
@@ -23,9 +23,9 @@ public class IlceService {
 
     public Vector<Ilce> getListeBySehirId(int sehirId) throws
             UnirestException,
-            GenelHataException,
-            YetkilendirmeException,
-            BilinmeyenDurumException {
+            BadRequestException,
+            UnauthorizedException,
+            UnknownException {
 
         HttpResponse response = client.getApiService().get("/sehir/" + sehirId + "/ilceler");
 
@@ -38,10 +38,10 @@ public class IlceService {
                         new TypeToken<Vector<Ilce>>(){}.getType()
                 );
 
-            case 400: throw new GenelHataException(client.getGson().fromJson(response.getBody().toString(), GenelHataResponse.class));
-            case 401: throw new YetkilendirmeException(client.getGson().fromJson(response.getBody().toString(), YetkilendirmeResponse.class));
+            case 400: throw new BadRequestException(client.getGson().fromJson(response.getBody().toString(), BadRequestResponse.class));
+            case 401: throw new UnauthorizedException(client.getGson().fromJson(response.getBody().toString(), UnauthorizedResponse.class));
         }
 
-        throw new BilinmeyenDurumException(response);
+        throw new UnknownException(response);
     }
 }

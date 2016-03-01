@@ -1,6 +1,6 @@
 package io.etkinlik.api.client.model.response.exception;
 
-public class BulunamadiResponse {
+public class GoneResponse {
     private int sonuc;
     private String mesaj;
 
