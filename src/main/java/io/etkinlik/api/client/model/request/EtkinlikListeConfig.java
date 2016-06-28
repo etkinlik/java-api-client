@@ -7,10 +7,10 @@ import java.util.Vector;
 
 public class EtkinlikListeConfig {
 
-    private Vector<Integer> turIds;
-    private Vector<Integer> kategoriIds;
-    private Vector<Integer> mekanIds;
-    private Vector<Integer> sehirIds;
+    private Vector<Integer> turIds = new Vector<>();
+    private Vector<Integer> kategoriIds = new Vector<>();
+    private Vector<Integer> mekanIds = new Vector<>();
+    private Vector<Integer> sehirIds = new Vector<>();
 
     private int sayfa = 1;
     private int adet = 50;
