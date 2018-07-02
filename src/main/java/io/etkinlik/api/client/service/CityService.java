@@ -6,22 +6,22 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import io.etkinlik.api.client.ApiClient;
 import io.etkinlik.api.client.exception.UnauthorizedException;
 import io.etkinlik.api.client.exception.UnknownException;
-import io.etkinlik.api.client.model.Sehir;
+import io.etkinlik.api.client.model.City;
 import io.etkinlik.api.client.model.response.exception.UnauthorizedResponse;
 
 import java.util.Vector;
 
-public class SehirService {
+public class CityService {
 
     private final ApiClient client;
 
-    public SehirService(ApiClient apiClient) {
+    public CityService(ApiClient apiClient) {
         this.client = apiClient;
     }
 
-    public Vector<Sehir> getListe() throws UnirestException {
+    public Vector<City> getItems() throws UnirestException {
 
-        HttpResponse response = client.getApiService().get("/kategoriler");
+        HttpResponse response = client.getApiService().get("/cities");
 
         switch (response.getStatus()) {
 
@@ -29,10 +29,12 @@ public class SehirService {
 
                 return client.getGson().fromJson(
                         response.getBody().toString(),
-                        new TypeToken<Vector<Sehir>>(){}.getType()
+                        new TypeToken<Vector<City>>() {
+                        }.getType()
                 );
 
-            case 401: throw new UnauthorizedException(client.getGson().fromJson(response.getBody().toString(), UnauthorizedResponse.class));
+            case 401:
+                throw new UnauthorizedException(client.getGson().fromJson(response.getBody().toString(), UnauthorizedResponse.class));
         }
 
         throw new UnknownException(response);

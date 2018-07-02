@@ -2,19 +2,29 @@ package io.etkinlik.api.client.model.response.exception;
 
 public class MovedResponse {
 
-    private int sonuc;
-    private String mesaj;
-    private int yeniId;
+    private boolean success;
+    private String message;
+    private int new_id;
+    private String new_name;
+    private String new_slug;
 
-    public int getSonuc() {
-        return sonuc;
+    public boolean getSuccess() {
+        return success;
     }
 
-    public String getMesaj() {
-        return mesaj;
+    public String getMessage() {
+        return message;
     }
 
-    public int getYeniId() {
-        return yeniId;
+    public int getNewId() {
+        return new_id;
+    }
+
+    public String getNewName() {
+        return new_name;
+    }
+
+    public String getNewSlug() {
+        return new_slug;
     }
 }

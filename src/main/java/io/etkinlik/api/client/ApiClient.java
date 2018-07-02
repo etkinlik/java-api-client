@@ -2,17 +2,17 @@ package io.etkinlik.api.client;
 
 import com.google.gson.Gson;
 import io.etkinlik.api.client.service.ApiService;
-import io.etkinlik.api.client.service.EtkinlikService;
-import io.etkinlik.api.client.service.TurService;
+import io.etkinlik.api.client.service.EventService;
+import io.etkinlik.api.client.service.FormatService;
 
 public class ApiClient {
 
     private String token;
     private Gson gson;
 
-    private static EtkinlikService etkinlikService = null;
+    private static EventService eventService = null;
     private static ApiService apiService = null;
-    private static TurService turService = null;
+    private static FormatService formatService = null;
 
 
     public ApiClient(String token) {
@@ -20,18 +20,18 @@ public class ApiClient {
         gson = new Gson();
     }
 
-    public EtkinlikService getEtkinlikService() {
-        if (etkinlikService == null) {
-            etkinlikService = new EtkinlikService(this);
+    public EventService getEventService() {
+        if (eventService == null) {
+            eventService = new EventService(this);
         }
-        return etkinlikService;
+        return eventService;
     }
 
-    public TurService getTurService() {
-        if (turService == null) {
-            turService = new TurService(this);
+    public FormatService getFormatService() {
+        if (formatService == null) {
+            formatService = new FormatService(this);
         }
-        return turService;
+        return formatService;
     }
 
     public ApiService getApiService() {

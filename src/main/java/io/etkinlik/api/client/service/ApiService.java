@@ -7,9 +7,7 @@ import com.mashape.unirest.request.GetRequest;
 import io.etkinlik.api.client.ApiClient;
 
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
-import java.util.Properties;
 
 public class ApiService {
 
@@ -21,8 +19,8 @@ public class ApiService {
 
     private GetRequest prepareGet(String address) {
         return Unirest
-                .get("https://etkinlik.io/api/v1" + address)
-                .header("X-ETKINLIK-TOKEN", client.getToken())
+                .get("https://backend.etkinlik.io/api/v2" + address)
+                .header("X-Etkinlik-Token", client.getToken())
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json");
     }

@@ -1,14 +1,14 @@
 package io.etkinlik.api.client.model.response.exception;
 
 public class NotFoundResponse {
-    private int sonuc;
-    private String mesaj;
+    private boolean success;
+    private String message;
 
-    public int getSonuc() {
-        return sonuc;
+    public boolean getSuccess() {
+        return success;
     }
 
-    public String getMesaj() {
-        return mesaj;
+    public String getMessage() {
+        return message;
     }
 }
